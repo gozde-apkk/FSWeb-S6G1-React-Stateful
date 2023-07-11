@@ -36,6 +36,7 @@ ADIM 6:
 import React from 'react'; /* ADIM 0 */
 
 export default function Input() {
+  const [inputDeğeri, setInputDeğeri] = useState(" ");
   /* ADIM 1 */
 	
   const inputuDeğiştir = evt => {
@@ -44,23 +45,25 @@ export default function Input() {
     const { value } = evt.target;
 	
     /* ADIM 4 */
+    setInputDeğeri(value);
   };
   const reset = () => {
     /* ADIM 5 */
+    setInputDeğeri("");
   };
 
   const stil = {
     fontSize: '1.5em',
     marginBottom: '0.3em',
-    color: 'crimson', /* ADIM 2 */
+    color: inputDeğeri.length > 10 ?" crimson" : "royalblue"  /* ADIM 2 */
   };
 
   return (
     <div className='widget-input container'>
       <h2>Input</h2>
-      <div id='output' style={stil}></div> {/* ADIM 3 */}
+      <div id='output' style={stil}>{inputDeğeri.toUpperCase()}</div> {/* ADIM 3 */}
       <div>
-		<input id='input' type='text' onChange={inputuDeğiştir} /> {/* ADIM 6 */}
+      <input id='input' type='text' onChange={inputuDeğiştir} value={inputDeğeri}/> {/* ADIM 6 */}
         <button id='resetInput' onClick={reset}>Reset</button>
       </div>
     </div>
